@@ -125,8 +125,8 @@ uint8_t JPSerialProtocolLib::readSerialData()
   while (Serial.available())
   {
     inputChar[incomingCounter] = (char)Serial.read();
-    if (inputChar[incomingCounter] == WRITE_CHAR || 
-         inputChar[incomingCounter] == READ_CHAR || 
+    if (inputChar[incomingCounter] == WRITE_CHAR ||
+         inputChar[incomingCounter] == READ_CHAR ||
          inputChar[incomingCounter] == ANSWER_CHAR ||
           incomingCounter)
     {
@@ -136,7 +136,7 @@ uint8_t JPSerialProtocolLib::readSerialData()
 
       uint8_t result = parseSerialData();
       if (result != NO_COMMAND)
-      {      
+      {
         incomingCounter = 0;
         return result;
       }
