@@ -8,6 +8,7 @@
 #define READ_COMMAND 2
 #define REPLY_COMMAND 3
 #define REPLY_ERROR 4
+#define NO_COMMAND_FOR_ME 5
 
 #ifndef SERIAL_DATA_MAX_LENGTH
 #define SERIAL_DATA_MAX_LENGTH 16
@@ -40,8 +41,8 @@ class JPSerialProtocolLib
     uint8_t getparity();
 
   private:
-  
-    typedef struct 
+
+    typedef struct
     {
       uint8_t command;
       uint8_t destnodeaddress;
@@ -51,7 +52,7 @@ class JPSerialProtocolLib
       uint8_t parity;
       uint8_t length;
     } incomingPacketType;
-    
+
     incomingPacketType incomingPacket;
 
     uint8_t inputChar[SERIAL_WORD_MAX_LENGTH];

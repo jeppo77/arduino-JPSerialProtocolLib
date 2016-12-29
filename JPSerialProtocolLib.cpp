@@ -4,9 +4,10 @@
 //#define SERIAL_PROTOCOL_DEBUG
 //#define IGNORE_PARITY
 
-#define WRITE_CHAR (uint8_t)0x5A
-#define READ_CHAR (uint8_t)0xA5
-#define ANSWER_CHAR (uint8_t)0xAA
+#define WRITE_CHAR (uint8_t)0x0E
+#define READ_CHAR (uint8_t)0x0F
+#define ANSWER_CHAR (uint8_t)0x06
+#define FLUSH_CHAR (uint8_t)0x00
 
 JPSerialProtocolLib::JPSerialProtocolLib()
 {
@@ -21,7 +22,8 @@ void JPSerialProtocolLib::begin(long speed, uint8_t newnodeaddress)
         Serial.print("starting serial protocol , node 0x");
         Serial.print(newnodeaddress, HEX);
 #endif
-
+        for (int i=0;i<SERIAL_WORD_MAX_LENGTH;i++) // flush whatever is in the target's buffer
+                Serial.write(FLUSH_CHAR);
 }
 
 /**
